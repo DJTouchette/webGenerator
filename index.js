@@ -11,7 +11,7 @@ const content = JSON.parse(fs.readFileSync(pathToJson, 'utf8'));
 makeDirectory(content);
 
 function makeDirectory(content) {
-    console.log('im make Directory');
+    // console.log('im make Directory');
     fs.mkdirSync(dir);
     fs.mkdirSync(dir + '/assets');
     fs.mkdirSync(dir + '/images');
@@ -20,10 +20,11 @@ function makeDirectory(content) {
     console.log("Created directories");
     copyDir.sync(__dirname + '/assets', dir + '/assets');
     copyDir.sync(__dirname + '/images', dir + '/images');
-    // console.log("Created directories");
+    console.log("Created directories");
 
     makeTemplate(content);
 }
+
 
 function makeTemplate(content) {
     fs.writeFile(dir + '/index.html', template(content, content.content.length || 3, content.building || 'Building Name'), function(err) {
@@ -42,10 +43,10 @@ function fullsToThumbNail(pathToPhotos) {
     fs.readdir(pathToPhotos, (err, files) => {
         let i = 1;
         
-    files.forEach(file => {
-        toThumbnail(__dirname + '/fulls/' + file, i);
-        i ++;
-    });
+        files.forEach(file => {
+            toThumbnail(pathToPhotos + '/' + file, i);
+            i ++;
+        });
     });
 }
 

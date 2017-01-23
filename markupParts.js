@@ -1,9 +1,9 @@
 const loremIpsum = require('lorem-ipsum');
 
-function makeFeatures(amountFeats, content) {
+function makeFeatures(content, amountFeats) {
   let features = '';
-
-	if (!content) {
+  console.log(content);
+	if (!content.content) {
 		for (let i = 0; i < amountFeats; i ++) {
 			let featCount = i + 1;
 			let content = {
@@ -20,7 +20,7 @@ function makeFeatures(amountFeats, content) {
 
 		for (let i = 0; i < amountFeats; i ++) {
 			let featCount = i + 1;
-      features += '\n' + feature('left', content[i], featCount);
+      features += '\n' + feature('left', content.content[i], featCount);
     }
 
     return features;
@@ -41,6 +41,7 @@ function loremParagraph() {
 }
 
 function feature(side, content, featCount) {
+  console.log(content);
 	const featureBottom = `
 	<!-- Feature `+ featCount +` -->
 			<article id="first" class="container box style1 right">
@@ -54,6 +55,7 @@ function feature(side, content, featCount) {
 				<a href="#" class="image fit"><img src="images/feature`+ featCount +`.jpg" alt="" /></a>
 			</article>
 	`;
+  
 	if (side == 'bottom') return featureBottom;
 
 	const featureSide = `
